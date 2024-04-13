@@ -83,10 +83,10 @@ input {
   flex-basis: 100%;
 }
 
-button.emo-button.disable {
+button.emo-button.completed {
   border: none;
 }
 
-button.emo-button.disable:hover {
+button.emo-button.completed:hover {
   background-color: transparent;
 }

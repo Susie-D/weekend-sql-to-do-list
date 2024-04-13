@@ -21,7 +21,7 @@ renderToDo = (todoList) => {
     <tr id="todoRow" data-testid="toDoItem">
         <td class="row-line">
         ${todo.is_completed
-                ? ` <button class="emo-button disable">✅</button>`
+                ? ` <button class="emo-button completed" data-testid="completeButton">✅</button>`
                 : `<button onclick="completeTodo(${todo.id}, ${todo.is_completed})" class="emo-button">🔴</button>`
             }
         </td>
@@ -34,7 +34,7 @@ renderToDo = (todoList) => {
             }
         </td>
         <td>
-            <button onclick="deleteTodo(${todo.id})" class="emo-button" data-testid="deleteButton">❌
+            <button onclick="deleteTodo(${todo.id})" class="emo-button" data-testid="deleteButton">✖️
             </button>
         </td>
     </tr>
