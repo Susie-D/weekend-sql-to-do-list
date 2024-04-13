@@ -15,9 +15,9 @@
     <h1>SQL TO-DO List</h1>
   </header>
   <div class="addTodo">
-    <input id="description" placeholder=" Description" type="text"></input>
-    <input id="dueDate" placeholder="Due Date" type="date"></input>
-    <button onclick="addTodo()" class="emo-button plus">➕</button>
+    <input id="description" placeholder=" Description" type="text" data-testid="toDoTextInput"></input>
+    <input id="dueDate" placeholder="Due Date" type="date" data-testid="toDoTextInput"></input>
+    <button onclick="addTodo()" class="emo-button plus" data-testid="submitButton">➕</button>
   </div>
   <table>
     <tr>

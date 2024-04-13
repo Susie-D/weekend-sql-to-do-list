@@ -16,3 +16,19 @@ VALUES
 ('Clean out closet', '4/15/2024', false);
 
 SELECT * FROM task_list; 
+
+
+-- INITIAL CODE
+DROP TABLE IF EXISTS "todos";
+
+CREATE TABLE "todos" (
+	"id" SERIAL PRIMARY KEY,
+	"text" TEXT,
+	"isComplete" BOOLEAN DEFAULT FALSE
+);
+
+INSERT INTO "todos"
+  ("text")
+  VALUES 
+  ('Build a CRUD app'),
+  ('Make my app look nice');

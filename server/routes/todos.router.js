@@ -14,15 +14,14 @@ router.get('/', (req, res) => {
       res.send(todoData);
     })
     .catch((dbError) => {
-      console.log('DB query failed inside GET /songs!');
       console.log('Error is:', dbError);
+      alert('DB query failed in GET ROUTE');
       res.sendStatus(500);
     });
 });
 
 // POST
 router.post('/', (req, res) => {
-  console.log('req.body', req.body);
   const r = req.body;
 
   const addTodos = `
@@ -40,10 +39,32 @@ router.post('/', (req, res) => {
     })
     .catch((dbError) => {
       console.log('Error', dbError);
+      alert('Error adding todo. Please try again later.');
     });
 });
 
 // DELETE
+router.delete('/:todo_id', (req, res) => {
+  console.log('req', req.params);
+
+  const itemToDelete = req.params.todo_id;
+
+  let deleteTodo = `DELETE FROM task_list
+        WHERE id= $1
+    `;
+
+  const sqlValues = [itemToDelete];
+
+  pool
+    .query(deleteTodo, sqlValues)
+    .then((dbResult) => {
+      res.sendStatus(200);
+    })
+    .catch((dbError) => {
+      console.log('DELETE /songs/:song_id fail:', dbError);
+      res.sendStatus(500);
+    });
+});
 
 // PUT
 
