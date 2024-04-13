@@ -20,15 +20,15 @@ renderToDo = (todoList) => {
         document.getElementById('todoList').innerHTML += `
     <tr id="todoRow" data-testid="toDoItem">
         <td class="row-line">
-        ${todo.is_completed
+        ${todo.iscompleted
                 ? ` <button class="emo-button completed" data-testid="completeButton">✅</button>`
-                : `<button onclick="completeTodo(${todo.id}, ${todo.is_completed})" class="emo-button">🔴</button>`
+                : `<button onclick="completeTodo(${todo.id}, ${todo.iscompleted})" class="emo-button">🔴</button>`
             }
         </td>
-        <td>${todo.is_completed ? `<s>${todo.description}</s>` : `${todo.description}`}
+        <td>${todo.iscompleted ? `<s>${todo.description}</s>` : `${todo.description}`}
         </td>
         <td>
-        ${todo.is_completed
+        ${todo.iscompleted
                 ? `<s>${new Date(todo.due_date).toLocaleDateString()}</s>`
                 : `${new Date(todo.due_date).toLocaleDateString()}`
             }
@@ -70,7 +70,6 @@ clearInputs = () => {
 };
 
 deleteTodo = (todoId) => {
-    console.log('todoId', todoId);
     axios({
         method: 'DELETE',
         url: `/todos/${todoId}`,
@@ -88,9 +87,9 @@ deleteTodo = (todoId) => {
 completeTodo = (todoId, isCompleted) => {
     axios({
         method: 'PUT',
-        url: `/todos/is_completed/${todoId}`,
+        url: `/todos/isCompleted/${todoId}`,
         data: {
-            is_completed: isCompleted,
+            isCompleted: isCompleted,
         },
     })
         .then(function (response) {

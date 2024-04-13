@@ -1,6 +1,6 @@
 const pg = require('pg');
 
-let databaseName = 'weekend-to-do-app';
+let databaseName = 'todo';
 
 if (process.env.NODE_ENV === 'test') {
   databaseName = 'prime_testing';
@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'test') {
 const pool = new pg.Pool({
   host: 'localhost',
   port: 5432,
-  database: 'todo',
+  database: databaseName,
   allowExitOnIdle: true,
 });
 
