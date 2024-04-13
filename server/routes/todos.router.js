@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
   const toDoTxt = `
     SELECT * FROM task_list
-    ORDER BY id;
+    ORDER BY is_completed ASC;
   `;
   pool
     .query(toDoTxt)
@@ -73,7 +73,7 @@ router.put('/is_completed/:id', (req, res) => {
 
   if (isCompleted === false) {
     updateTodo = `UPDATE task_list SET is_completed = true WHERE id=$1`;
-  } else {
+  } else if (isCompleted == true) {
     console.log('Error on /is_completed/:id');
     res.sendStatus(500);
     return;

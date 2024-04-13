@@ -19,10 +19,16 @@ renderToDo = (todoList) => {
   for (todo of todoList) {
     document.getElementById('todoList').innerHTML += `
     <tr id="todoRow" data-testid="toDoItem">
-        <td class="row-line">${todo.is_completed}</td>
+        <td class="row-line">
+        ${
+          todo.is_completed
+            ? ` <button onclick="editTodo(${todo.id}, ${todo.is_completed})" class="emo-button">✅</button>`
+            : `<button onclick="editTodo(${todo.id}, ${todo.is_completed})" class="emo-button">🔴</button>`
+        }
+    </td>
         <td>${todo.description}</td>
         <td>${new Date(todo.due_date).toLocaleDateString()}</td>
-        <td><button onclick="editTodo(${todo.id}, ${
+        <td> <button onclick="editTodo(${todo.id}, ${
       todo.is_completed
     })" class="emo-button">✏️</button></td>
         <td>
