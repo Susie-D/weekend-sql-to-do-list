@@ -22,7 +22,9 @@ renderToDo = (todoList) => {
         <td class="row-line">${todo.is_completed}</td>
         <td>${todo.description}</td>
         <td>${new Date(todo.due_date).toLocaleDateString()}</td>
-        <td><button onclick="editTodo()" class="emo-button">✏️</button></td>
+        <td><button onclick="editTodo(${todo.id}, ${
+      todo.is_completed
+    })" class="emo-button">✏️</button></td>
         <td>
             <button onclick="deleteTodo(${
               todo.id
@@ -38,17 +40,17 @@ renderToDo = (todoList) => {
 addTodo = () => {
   // Values to send to server
   const description = document.getElementById('description').value;
-  const dueDate = document.getElementById('dueDate').value;
-  const todoObj = { description, dueDate };
-
+  let dueDate = document.getElementById('dueDate').value;
+  let completed = false;
+  let todoObj = { description, dueDate, completed };
   axios({
     method: 'POST',
     url: '/todos',
     data: todoObj,
   })
     .then((response) => {
-      console.log('response data', response.data);
       getTodos();
+      clearInputs();
     })
     .catch((error) => {
       console.log('Axios ADD error', error);
@@ -56,23 +58,41 @@ addTodo = () => {
     });
 };
 
+clearInputs = () => {
+  document.getElementById('description').value = '';
+  document.getElementById('dueDate').value = '';
+};
+
 deleteTodo = (todoId) => {
   console.log('todoId', todoId);
   axios({
     method: 'DELETE',
     url: `/todos/${todoId}`,
-  }).then((response) => {
-    getTodos();
-  });
-  // .catch((error) => {
-  //   console.log('Axios DELETE error', error);
-  //   alert('Error deleting an item to todo list. Please try again later.');
-  // });
+  })
+    .then((response) => {
+      getTodos();
+    })
+    .catch((error) => {
+      console.log('Axios DELETE error', error);
+      alert('Error deleting an item to todo list. Please try again later.');
+    });
 };
 
 // EDIT
-editTodo = () => {
-  console.log('edit');
+editTodo = (todoId, isCompleted) => {
+  axios({
+    method: 'PUT',
+    url: `/todos/is_completed/${todoId}`,
+    data: {
+      is_completed: isCompleted,
+    },
+  })
+    .then(function (response) {
+      getTodos();
+    })
+    .catch(function (error) {
+      alert('Updating item has an error. Please try again later.');
+    });
 };
 
 getTodos();
