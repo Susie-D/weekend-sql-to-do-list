@@ -1,0 +1,61 @@
+html {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  margin: 4em;
+  background-color: #f2e6ff;
+  background-image: url('background.png');
+  background-repeat: no-repeat;
+  background-position: 25% 40%;
+}
+
+body {
+  padding-bottom: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(102, 15, 130, 0.13) 25%,
+    rgba(227, 61, 61, 0.17) 100%
+  );
+}
+
+tr {
+  border: 1px solid lightblue;
+}
+
+td,
+th {
+  height: 3em;
+  text-align: left;
+  padding-left: 1em;
+}
+
+.row-line {
+  text-align: center;
+  border-right: 1px solid red;
+}
+
+.emo-button {
+  background-color: transparent;
+  height: 2.5em;
+  border: 1px dotted pink;
+  border-radius: 2em;
+}
+
+.emo-button:hover {
+  background-color: white;
+}
+
+.header {
+  background-color: white;
+  border-top: 1px solid lightblue;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  padding: 0.5em;
+}
