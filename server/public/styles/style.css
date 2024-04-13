@@ -82,3 +82,11 @@ input {
   justify-content: space-around;
   flex-basis: 100%;
 }
+
+button.emo-button.disable {
+  border: none;
+}
+
+button.emo-button.disable:hover {
+  background-color: transparent;
+}
