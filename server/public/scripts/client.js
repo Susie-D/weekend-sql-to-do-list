@@ -22,33 +22,19 @@ renderToDo = (todoList) => {
         <td class="row-line">
         ${todo.is_completed
                 ? ` <button class="emo-button disable">✅</button>`
-                : `<button onclick="editTodo(${todo.id}, ${todo.is_completed})" class="emo-button">🔴</button>`
+                : `<button onclick="completeTodo(${todo.id}, ${todo.is_completed})" class="emo-button">🔴</button>`
             }
-    </td>
-        <td>
-               ${todo.is_completed
-                ? `<s>${todo.description}</s>`
-                : `${todo.description}`
-            }
-        
+        </td>
+        <td>${todo.is_completed ? `<s>${todo.description}</s>` : `${todo.description}`}
         </td>
         <td>
-        
-
-        
         ${todo.is_completed
                 ? `<s>${new Date(todo.due_date).toLocaleDateString()}</s>`
-                : `        ${new Date(todo.due_date).toLocaleDateString()}`
+                : `${new Date(todo.due_date).toLocaleDateString()}`
             }
-        
-        
         </td>
-        <td> <button onclick="editTodo(${todo.id}, ${todo.is_completed
-            })" class="emo-button">✏️</button>
-    </td>
         <td>
-            <button onclick="deleteTodo(${todo.id
-            })" class="emo-button" data-testid="deleteButton">❌
+            <button onclick="deleteTodo(${todo.id})" class="emo-button" data-testid="deleteButton">❌
             </button>
         </td>
     </tr>
@@ -99,7 +85,7 @@ deleteTodo = (todoId) => {
 };
 
 // EDIT
-editTodo = (todoId, isCompleted) => {
+completeTodo = (todoId, isCompleted) => {
     axios({
         method: 'PUT',
         url: `/todos/is_completed/${todoId}`,
@@ -113,6 +99,6 @@ editTodo = (todoId, isCompleted) => {
         .catch(function (error) {
             alert('Updating item has an error. Please try again later.');
         });
-};
+}
 
 getTodos();
