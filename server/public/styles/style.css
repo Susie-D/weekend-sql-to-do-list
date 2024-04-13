@@ -41,11 +41,21 @@ th {
 .emo-button {
   background-color: transparent;
   height: 2.5em;
-  border: 1px dotted pink;
+  border: 1px dotted black;
   border-radius: 2em;
 }
 
 .emo-button:hover {
+  background-color: white;
+}
+
+.plus {
+  margin-left: 1em;
+  background-color: lightblue;
+  border: 1px dotted black;
+}
+
+.plus:hover {
   background-color: white;
 }
 
@@ -58,4 +68,17 @@ th {
 h1 {
   margin: 0;
   padding: 0.5em;
+}
+
+input {
+  height: 1em;
+  width: 40%;
+  margin: 1em 0;
+  padding: 1em;
+}
+
+.addToDo {
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 100%;
 }
