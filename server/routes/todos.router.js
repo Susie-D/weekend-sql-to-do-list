@@ -23,11 +23,11 @@ router.get('/', (req, res) => {
 // POST
 router.post('/', (req, res) => {
     const r = req.body;
-    r.isCompleted = false;
+    r.iscompleted = false;
 
     const addTodos = `
     INSERT INTO task_list 
-      ("description", "due_date", "isCompleted")
+      ("description", "due_date", "iscompleted")
 	      VALUES ($1, $2, $3)
     `;
 
@@ -66,16 +66,17 @@ router.delete('/:todo_id', (req, res) => {
 });
 
 // PUT
-router.put('/isCompleted/:id', (req, res) => {
+router.put('/iscompleted/:id', (req, res) => {
+
     const todoId = req.params.id;
-    let isCompleted = req.body.isCompleted;
+    let isCompleted = req.body.iscompleted;
+
 
     if (isCompleted === false) {
         updateTodo = `UPDATE task_list SET isCompleted = true WHERE id=$1`;
     } else if (isCompleted == true) {
         console.log('Error on /isCompleted/:id');
         res.sendStatus(500);
-        return;
     }
 
     pool
@@ -84,7 +85,7 @@ router.put('/isCompleted/:id', (req, res) => {
             res.sendStatus(200);
         })
         .catch((error) => {
-            console.log('Error on /completed:id', error);
+            console.log('Error on /iscompleted:id', error);
             res.sendStatus(500);
         });
 });

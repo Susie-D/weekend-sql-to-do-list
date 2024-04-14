@@ -16,6 +16,11 @@ getTodos = () => {
 // RENDER GET
 renderToDo = (todoList) => {
     document.getElementById('todoList').innerHTML = '';
+    if (todoList.length === 0) {
+        document.getElementById('todoList').innerHTML = 'No tasks available';
+
+    }
+
     for (todo of todoList) {
         document.getElementById('todoList').innerHTML += `
     <tr id="todoRow" data-testid="toDoItem">
@@ -47,8 +52,8 @@ addTodo = () => {
     // Values to send to server
     const description = document.getElementById('description').value;
     let dueDate = document.getElementById('dueDate').value;
-    let completed = false;
-    let todoObj = { description, dueDate, completed };
+    let iscompleted = false;
+    let todoObj = { description, dueDate, iscompleted };
     axios({
         method: 'POST',
         url: '/todos',
@@ -87,9 +92,9 @@ deleteTodo = (todoId) => {
 completeTodo = (todoId, isCompleted) => {
     axios({
         method: 'PUT',
-        url: `/todos/isCompleted/${todoId}`,
+        url: `/todos/iscompleted/${todoId}`,
         data: {
-            isCompleted: isCompleted,
+            iscompleted: isCompleted,
         },
     })
         .then(function (response) {
