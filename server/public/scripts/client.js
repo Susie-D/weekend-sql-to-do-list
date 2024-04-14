@@ -75,6 +75,12 @@ clearInputs = () => {
 };
 
 deleteTodo = (todoId) => {
+    if (confirm('Are you sure you want to delete this task?')) {
+        deleteTodoConfirmed(todoId)
+    }
+}
+
+deleteTodoConfirmed = (todoId) => {
     axios({
         method: 'DELETE',
         url: `/todos/${todoId}`,
