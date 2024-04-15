@@ -60,7 +60,7 @@ router.delete('/:todo_id', (req, res) => {
             res.sendStatus(200);
         })
         .catch((dbError) => {
-            console.log('DELETE /songs/:song_id fail:', dbError);
+            console.log('DELETE /todo_id fail:', dbError);
             res.sendStatus(500);
         });
 });
@@ -72,10 +72,10 @@ router.put('/iscompleted/:id', (req, res) => {
     let isCompleted = req.body.iscompleted;
 
 
-    if (isCompleted === false) {
-        updateTodo = `UPDATE task_list SET isCompleted = true WHERE id=$1`;
+    if (isCompleted) {
+        updateTodo = `UPDATE task_list SET iscompleted = true WHERE id=$1`;
     } else if (isCompleted == true) {
-        console.log('Error on /isCompleted/:id');
+        console.log('Error on /iscompleted/:id');
         res.sendStatus(500);
     }
 

@@ -15,6 +15,7 @@ getTodos = () => {
 
 // RENDER GET
 renderToDo = (todoList) => {
+    let dueDate = document.getElementById('dueDate').value;
     document.getElementById('todoList').innerHTML = '';
     if (todoList.length === 0) {
         document.getElementById('todoList').innerHTML = 'No tasks available';
@@ -22,6 +23,9 @@ renderToDo = (todoList) => {
     }
 
     for (todo of todoList) {
+        dueDate = todo.due_date;
+        todo.iscomplete ? true : false
+
         document.getElementById('todoList').innerHTML += `
     <tr id="todoRow" data-testid="toDoItem">
         <td class="row-line">
@@ -34,8 +38,8 @@ renderToDo = (todoList) => {
         </td>
         <td>
         ${todo.iscompleted
-                ? `<s>${new Date(todo.due_date).toLocaleDateString()}</s>`
-                : `${new Date(todo.due_date).toLocaleDateString()}`
+                ? `<s>${new Date(dueDate).toLocaleDateString()}</s>`
+                : `${new Date(dueDate).toLocaleDateString()}`
             }
         </td>
         <td>
@@ -51,9 +55,10 @@ renderToDo = (todoList) => {
 addTodo = () => {
     // Values to send to server
     const description = document.getElementById('description').value;
-    let dueDate = document.getElementById('dueDate').value;
+    let due_date = document.getElementById('dueDate').value;
     let iscompleted = false;
-    let todoObj = { description, dueDate, iscompleted };
+
+    let todoObj = { description, due_date, iscompleted };
     axios({
         method: 'POST',
         url: '/todos',
@@ -96,6 +101,7 @@ deleteTodoConfirmed = (todoId) => {
 
 // EDIT
 completeTodo = (todoId, isCompleted) => {
+    isCompleted = true;
     axios({
         method: 'PUT',
         url: `/todos/iscompleted/${todoId}`,
