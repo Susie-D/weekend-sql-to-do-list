@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         })
         .catch((dbError) => {
             console.log('Error is:', dbError);
-            alert('DB query failed in GET ROUTE');
+            alert('DB query failed in GET" ROUTE');
             res.sendStatus(500);
         });
 });
